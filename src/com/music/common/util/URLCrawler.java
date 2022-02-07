@@ -1,7 +1,5 @@
 package com.music.common.util;
 
-import java.io.UnsupportedEncodingException;
-import java.net.URLEncoder;
 import java.util.concurrent.LinkedBlockingQueue;
 
 import org.openqa.selenium.By;
@@ -10,7 +8,6 @@ import org.openqa.selenium.WebElement;
 
 import com.music.common.chrome.ChromeDriverFactory;
 import com.music.music.dto.CrawlerDTO;
-import com.music.music.dto.Music;
 
 /**
  * selenium을 사용해 다운 받을 음악의 url을 크롤링하는 쓰래드
