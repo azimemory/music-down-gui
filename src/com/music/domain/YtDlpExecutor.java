@@ -12,12 +12,12 @@ import com.music.dto.Music;
  * @author azi
  *
  */
-public class Downloader implements Runnable{
+public class YtDlpExecutor implements Runnable{
 	
 	private LinkedBlockingQueue<Music> musics;
 	private static String savePath = System.getProperty("user.home") + "\\youtube-music\\";
 
-	public Downloader(LinkedBlockingQueue<Music> musics) {
+	public YtDlpExecutor(LinkedBlockingQueue<Music> musics) {
 		this.musics = musics;
 	}
 	

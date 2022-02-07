@@ -1,12 +1,8 @@
 package com.music.presentation;
 
 import java.util.ArrayList;
-import java.util.concurrent.LinkedBlockingQueue;
-
 import com.music.common.component.SwingComponent;
-import com.music.domain.Downloader;
-import com.music.domain.ThreadPoolExecutor;
-import com.music.domain.URLCrawler;
+import com.music.domain.MusicDownloader;
 import com.music.dto.Music;
 
 /**
@@ -15,15 +11,17 @@ import com.music.dto.Music;
  *
  */
 public class MusicController {
+	
+	private final MusicDownloader musicDownloader = new MusicDownloader();
+
 
 	public void downloadMusic(String searchingKeyword, String threads) {
-
+		
 		int threadCnt = validateThreadCnt(threads);
 		if(threadCnt < 0) return;
 		
 		ArrayList<Music> musicList = createMusicList(searchingKeyword);
-		crawlingMusicLink(musicList, threadCnt);
-		downloadMusic(musicList, threadCnt);
+		musicDownloader.downloadMusic(musicList, threadCnt);
 	}
 	
 	/**
@@ -59,19 +57,7 @@ public class MusicController {
 		return threadCnt;
 	}
 
-	private void crawlingMusicLink(ArrayList<Music> musicList, int threadCnt) {
-		LinkedBlockingQueue<Music> musicQueue = new LinkedBlockingQueue<>(musicList);
-		ThreadPoolExecutor
-		.getInstance()
-		.executeTasks(new URLCrawler(musicQueue),threadCnt);
-	}
 	
-	private void downloadMusic(ArrayList<Music> musicList, int threadCnt) {
-		LinkedBlockingQueue<Music> musicQueue = new LinkedBlockingQueue<>(musicList);
-		ThreadPoolExecutor
-		.getInstance()
-		.executeTasks(new Downloader(musicQueue),threadCnt);
-	}
 
 	
 }
