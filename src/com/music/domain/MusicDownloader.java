@@ -9,7 +9,7 @@ public class MusicDownloader {
 	
 	public void downloadMusic(ArrayList<Music> musicList, int threadCnt) {
 		crawlingMusicLink(musicList, threadCnt);
-		executYtDlp(musicList, threadCnt);
+		executeYtDlp(musicList, threadCnt);
 	}
 	
 	
@@ -20,7 +20,7 @@ public class MusicDownloader {
 		.executeTasks(new URLCrawler(musicQueue),threadCnt);
 	}
 	
-	private void executYtDlp(ArrayList<Music> musicList, int threadCnt) {
+	private void executeYtDlp(ArrayList<Music> musicList, int threadCnt) {
 		LinkedBlockingQueue<Music> musicQueue = new LinkedBlockingQueue<>(musicList);
 		ThreadPoolExecutor
 		.getInstance()
