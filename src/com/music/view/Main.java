@@ -8,7 +8,8 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JTextField;
 
-import com.music.presentation.MusicController;
+import com.music.music.controller.MusicController;
+
 
 /**
  * 어플리케이션 main 화면

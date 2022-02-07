@@ -1,9 +1,9 @@
-package com.music.presentation;
+package com.music.music.controller;
 
 import java.util.ArrayList;
 import com.music.common.component.SwingComponent;
-import com.music.domain.MusicDownloader;
-import com.music.dto.Music;
+import com.music.music.dto.Music;
+import com.music.music.service.MusicDownloader;
 
 /**
  * Music 컨트롤러, 사용자 입력값 파싱, 입력값 유효성 검사, 알맞은 비지니스 클래스 호출

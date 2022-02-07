@@ -1,10 +1,12 @@
-package com.music.domain;
+package com.music.common.util;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.concurrent.LinkedBlockingQueue;
-import com.music.dto.Music;
+
+import com.music.music.dto.Music;
+import com.music.music.dto.YtDlpDTO;
 
 
 /**
@@ -14,11 +16,11 @@ import com.music.dto.Music;
  */
 public class YtDlpExecutor implements Runnable{
 	
-	private LinkedBlockingQueue<Music> musics;
+	private LinkedBlockingQueue<YtDlpDTO> tasks;
 	private static String savePath = System.getProperty("user.home") + "\\youtube-music\\";
 
-	public YtDlpExecutor(LinkedBlockingQueue<Music> musics) {
-		this.musics = musics;
+	public YtDlpExecutor(LinkedBlockingQueue<YtDlpDTO> tasks) {
+		this.tasks = tasks;
 	}
 	
 	/**
@@ -27,23 +29,23 @@ public class YtDlpExecutor implements Runnable{
 	@Override
 	public void run() {
 		
-		while (!musics.isEmpty()) {
+		while (!tasks.isEmpty()) {
 			try {
-				download(musics.take());
+				execute(tasks.take());
 			} catch (IOException | InterruptedException e) {
 				e.printStackTrace();
 			}
 		}
 	}
 	
-	private void download(Music music) throws IOException {
+	private void execute(YtDlpDTO dto) throws IOException {
 		ProcessBuilder pb = new ProcessBuilder();
 		pb.command("yt-dlp",  
 				"--extract-audio"
 				, "--audio-format", "mp3"
 				, "--audio-quality", "0"
-				, "-o", savePath + music.getMusician() + "_" + music.getTitle() + ".%(ext)s",
-				music.getUrl());
+				, "-o", savePath + dto.getFileName() + ".%(ext)s",
+				dto.getVideoURL());
 
 		Process p = pb.start();
 		BufferedReader r = new BufferedReader(new InputStreamReader(p.getInputStream()));

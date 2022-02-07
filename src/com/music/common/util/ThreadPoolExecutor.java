@@ -1,4 +1,4 @@
-package com.music.domain;
+package com.music.common.util;
 
 /**
  * 사용자가 입력한 숫자의 쓰래드를 생성하여 실행

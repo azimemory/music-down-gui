@@ -1,4 +1,4 @@
-package com.music.dto;
+package com.music.music.dto;
 
 public class Music {
 	
