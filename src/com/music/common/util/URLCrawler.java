@@ -60,29 +60,6 @@ public class URLCrawler implements Runnable{
 		}
 	}
 	
-//	private void crawlingURL(Music music) {
-//		
-//		WebDriver driver = ChromeDriverFactory.getInstance().getChromeDriver(); 
-//		String url = "";
-//		String search = music.getMusician() + " - " + music.getTitle();
-//		
-//		try {
-//			
-//			String encoded = URLEncoder.encode(search, "UTF-8");
-//			driver.get("https://www.youtube.com/results?search_query="+encoded);
-//			
-//			Thread.sleep(2000);
-//			
-//			WebElement element = driver.findElement(By.cssSelector("a[href^=\"/watch?\"]"));
-//			url = element.getAttribute("href");
-//			music.setUrl(url);
-//			
-//		} catch (InterruptedException | UnsupportedEncodingException e) {
-//			e.printStackTrace();
-//		}finally {
-//			driver.close(); 
-//		}
-//	}
 
 	
 
